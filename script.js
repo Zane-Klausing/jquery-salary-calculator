@@ -1,12 +1,29 @@
 $(document).ready(onReady)
 
-console.log('js is ready!')
 
 let employees = [];
 
+
 function onReady(){
-    console.log ('jq is ready!')
+    renderEmployeesTable(employees)
     $('#submit-button').on('click', handleSubmitClick);
+}
+
+function renderEmployeesTable(employeesToRender){
+    $('table-body').empty();
+    for (let employee of employeesToRender) {
+    let newTableRow = `
+    <tr>
+        <td>${employee.FirstName}</td>
+        <td>${employee.LastName}</td>
+        <td>${employee.EmployeeID}</td>
+        <td>${employee.JobTitle}</td>
+        <td>${employee.Salary}</td>
+    </tr>
+    `;
+    $('#table-body').append(newTableRow);
+    console.log('employees rendered!')
+    }
 }
 
 function handleSubmitClick(){
@@ -25,5 +42,15 @@ function handleSubmitClick(){
         JobTitle: newJobTitle,
         Salary: newSalary,
     };
-    console.log(newEmployee)
+    //push New employee object into employee array
+    employees.push(newEmployee);
+
+    // clear inputs
+    $('#firstName').val('');
+    $('#lastName').val('');
+    $('#idNumber').val('');
+    $('#jobTitle').val('');
+    $('#salary').val('');
+    renderEmployeesTable(employees);
 }
+
