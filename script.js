@@ -5,12 +5,13 @@ let employees = [];
 
 
 function onReady(){
-    renderEmployeesTable(employees)
+    renderEmployeesTable(employees);
+    renderTotalSalary(employees);
     $('#submit-button').on('click', handleSubmitClick);
-}
+};
 
 function renderEmployeesTable(employeesToRender){
-    $('table-body').empty();
+    $('#table-body').empty();
     for (let employee of employeesToRender) {
     let newTableRow = `
     <tr>
@@ -24,7 +25,22 @@ function renderEmployeesTable(employeesToRender){
     $('#table-body').append(newTableRow);
     console.log('employees rendered!')
     }
+};
+
+function renderTotalSalary(incomeToSum){
+    $('#totalSalary').empty()
+    let totalSalary = calculateTotalSalary(incomeToSum);
+    $('#totalSalary').text(totalSalary)
+};
+
+function calculateTotalSalary(incomeToSum) {
+    let sum = 0;
+    for (let employee of incomeToSum) {
+        sum += employee.Salary;
+    }
+    return sum;
 }
+
 
 function handleSubmitClick(){
     // grab the values user has entered in inputs
@@ -40,7 +56,7 @@ function handleSubmitClick(){
         LastName: newLastName,
         EmployeeID: newEmployeeID,
         JobTitle: newJobTitle,
-        Salary: newSalary,
+        Salary: Number(newSalary),
     };
     //push New employee object into employee array
     employees.push(newEmployee);
@@ -52,5 +68,6 @@ function handleSubmitClick(){
     $('#jobTitle').val('');
     $('#salary').val('');
     renderEmployeesTable(employees);
+    renderTotalSalary(employees)
 }
 
