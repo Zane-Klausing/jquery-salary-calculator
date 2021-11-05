@@ -12,12 +12,27 @@
 <body>
     <h1>Salary Calculator</h1>
     <div>
-        <input placeholder="First Name" type="text">
-        <input placeholder="Last Name" type="text">
-        <input placeholder="ID Number" type="text">
-        <input placeholder="Job Title" type="text">
-        <input placeholder="Salary" type="number">
-        <button>Submit</button>
+        <input id="firstName" placeholder="First Name" type="text">
+        <input id="lastName" placeholder="Last Name" type="text">
+        <input id="idNumber" placeholder="ID Number" type="text">
+        <input id="jobTitle" placeholder="Job Title" type="text">
+        <input id="salary" placeholder="Salary" type="number">
+        <button id="submit-button">Submit</button>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Employee ID</th>
+                  <th>Job Title</th>
+                  <th>Salary</th>
+                </tr>
+              </thead>
+              <tbody id="table-body">
+              </tbody>
+        </table>
     </div>
 </body>
 </html>
