@@ -5,6 +5,7 @@ let employees = [];
 
 function onReady(){
     $('#submit-button').on('click', handleSubmitClick);
+    renderTotalSalary(employees)
 };
 
 function renderEmployeesTable(employeesToRender){
@@ -29,7 +30,14 @@ console.log('employees rendered!')
 function renderTotalSalary(incomeToSum){
     $('#totalSalary').empty()
     let totalSalary = calculateTotalSalary(incomeToSum);
-    $('#totalSalary').text(totalSalary)
+    if (totalSalary > 20000){
+        $('#totalSalary').addClass('uhOh')
+        console.log(totalSalary);
+    }
+    else {
+        $('#totalSalary').removeClass('uhOh')
+    }
+    $('#totalSalary').text(`Total Salary is ${totalSalary}`)
 };
 
 function calculateTotalSalary(incomeToSum) {
