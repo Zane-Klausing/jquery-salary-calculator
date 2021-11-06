@@ -1,19 +1,15 @@
 $(document).ready(onReady)
 
-
 let employees = [];
 
 
 function onReady(){
-    renderEmployeesTable(employees);
-    renderTotalSalary(employees);
     $('#submit-button').on('click', handleSubmitClick);
-    $('#delete-button').on('click', handleDeleteClick);
 };
 
 function renderEmployeesTable(employeesToRender){
     $('#table-body').empty();
-    for (let i=0; i<employeesToRender.length; i++;) {
+    for (let i=0; i<employeesToRender.length; i++) {
     let newTableRow = `
     <tr id = "delete-me">
         <td>${employeesToRender[i].FirstName}</td>
@@ -21,12 +17,13 @@ function renderEmployeesTable(employeesToRender){
         <td>${employeesToRender[i].EmployeeID}</td>
         <td>${employeesToRender[i].JobTitle}</td>
         <td>${employeesToRender[i].Salary}</td>
-        <td><button id="delete-button" data-index=${i}>${'Delete'}</button></td>
+        <td><button class="delete-button" data-index=${i}>${'Delete'}</button></td>
     </tr>
     `;
-    $('#table-body').append(newTableRow);
-    console.log('employees rendered!')
+        $('#table-body').append(newTableRow);
     }
+$('.delete-button').on('click', handleDeleteClick);
+console.log('employees rendered!')
 };
 
 function renderTotalSalary(incomeToSum){
@@ -71,11 +68,12 @@ function handleSubmitClick(){
     $('#salary').val('');
     renderEmployeesTable(employees);
     renderTotalSalary(employees);
-    onReady();
 }
 
 function handleDeleteClick(){
-    $('#delete-button').parent().parent().remove()
+    console.log($(this).data("index"))
+    employees.splice($(this).data("index"), 1);
     renderEmployeesTable(employees)
-    console.log('I tried!')
+    renderTotalSalary(employees);
+    console.log(employees)
 }
