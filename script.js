@@ -45,6 +45,8 @@ function calculateTotalSalary(incomeToSum) {
     for (let employee of incomeToSum) {
         sum += employee.Salary;
     }
+    sum = sum/12
+    sum = Math.round(sum)
     return sum;
 }
 
